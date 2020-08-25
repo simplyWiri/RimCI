@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project>
+
+  <PropertyGroup>
+    <TargetFramework Condition="'$(TargetFramework)' == '' AND '$(TargetFrameworks)' == ''">net472</TargetFramework>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <MultiBuildConfiguration>Release</MultiBuildConfiguration>
+    <OutputPath Condition="'$(OutputPath)' == ''">$(Configuration)\Assemblies</OutputPath>
+    <OutputPath Condition="'$(Configuration)' == '$(MultiBuildConfiguration)'">obj\$(Configuration)</OutputPath>
+  </PropertyGroup>
+</Project>

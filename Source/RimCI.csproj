@@ -2,32 +2,27 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>NET35;NET472</TargetFrameworks>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(TargetFramework)\</IntermediateOutputPath>
+    <TargetFramework>net472</TargetFramework>
+    <Configurations>1.0;1.1;1.2;Release</Configurations>
+    <OutputPath>..\$(OutputPath)</OutputPath>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)' == 'RELEASE'">
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
+  <PropertyGroup Condition="'$(Configuration)' == '1.0'">
+    <TargetFramework>net35</TargetFramework>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)' == 'NET35'">
-    <OutputPath>..\Assemblies</OutputPath>
-  </PropertyGroup>
-  
-  <PropertyGroup Condition="'$(TargetFramework)' == 'NET472'">
-    <OutputPath>..\1.1\Assemblies</OutputPath>
-  </PropertyGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net35'">
+  <ItemGroup Condition="'$(Configuration)' == '1.0'">
     <PackageReference Include="Krafs.Rimworld.Ref" Version="1.0.2551" />
-    <PackageReference Include="jnm2.ReferenceAssemblies.net35" Version="1.0.1" />
+    <PackageReference Include="Lib.Harmony" Version="1.2.0.1" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net472'">
+  <ItemGroup Condition="'$(Configuration)' == '1.1'">
     <PackageReference Include="Krafs.Rimworld.Ref" Version="1.1.2654" />
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net472" Version="1.0.0" />
+    <PackageReference Include="Lib.Harmony" Version="2.0.2" ExcludeAssets="runtime" />
   </ItemGroup>
 
+  <ItemGroup Condition="'$(Configuration)' == '1.2'">
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.2.*" />
+    <PackageReference Include="Lib.Harmony" Version="2.0.*" ExcludeAssets="runtime" />
+  </ItemGroup>
 </Project>

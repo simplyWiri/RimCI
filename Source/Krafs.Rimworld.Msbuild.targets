@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project>
+
+  <ItemGroup Condition="$(MultiBuildTargets) == ''">
+    <MultiBuildTargetItems Include="$(Configurations)" Exclude="$(MultiBuildConfiguration)" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$(MultiBuildTargets) != ''">
+    <MultiBuildTargetItems Include="$(MultiBuildTargets)" />
+  </ItemGroup>
+
+  <Target Name="Build">
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="Restore;Build" Properties="
+             Configuration=%(MultiBuildTargetItems.Identity);
+             Optimize=true;
+             DebugType=none;
+             MSBuildProjectExtensionsPath=$(BaseIntermediateOutputPath)%(MultiBuildTargetItems.Identity);" />
+  </Target>
+
+  <Target Name="Clean">
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="Clean" Properties="
+             Configuration=%(MultiBuildTargetItems.Identity);
+             MSBuildProjectExtensionsPath=$(BaseIntermediateOutputPath)%(MultiBuildTargetItems.Identity);" />
+  </Target>
+
+  <Target Name="Rebuild">
+    <MSBuild Projects="$(MSBuildProjectFile)" Targets="Rebuild" Properties="
+             Configuration=%(MultiBuildTargetItems.Identity);
+             Optimize=true;
+             DebugType=none;
+             MSBuildProjectExtensionsPath=$(BaseIntermediateOutputPath)%(MultiBuildTargetItems.Identity);" />
+  </Target>
+</Project>
