@@ -42,7 +42,7 @@ jobs:
       run: dotnet restore ${{ env.SLN_PATH }}
 
     - name: Build Mod
-      run: dotnet build ${{ env.SLN_PATH }} --configuration Release --no-restore
+      run: dotnet build ${{ env.SLN_PATH }} --configuration Release
 
     # I don't know how well testing will work without Rimworld actually installed. 
     # But if you have unit tests configured to work with dotnet, you may be able 
