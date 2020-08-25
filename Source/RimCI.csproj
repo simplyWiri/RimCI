@@ -5,6 +5,7 @@
     <TargetFramework>net472</TargetFramework>
     <Configurations>1.0;1.1;1.2;Release</Configurations>
     <OutputPath>..\$(OutputPath)</OutputPath>
+    <NoStdLib>true</NoStdLib>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)' == '1.0'">
