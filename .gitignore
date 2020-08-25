@@ -3,3 +3,4 @@ Assemblies/
 bin/
 obj/
 .vs/
+*.user
